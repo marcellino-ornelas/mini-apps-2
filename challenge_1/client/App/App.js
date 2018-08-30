@@ -18,6 +18,7 @@ class App extends Component {
     };
 
     this.handlePageClick = this.handlePageClick.bind(this);
+    this.search = this.search.bind(this);
   }
 
   // componentDidMount() {
@@ -40,6 +41,15 @@ class App extends Component {
     });
   }
 
+  search(q) {
+    this.getEventsByPage(q, 0, res => {
+      this.setState({
+        events: res.data,
+        currentPage: 0
+      });
+    });
+  }
+
   getEventsByPage(q, page, cb) {
     axios('/events', {
       params: {
@@ -57,7 +67,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Search />
+        <Search search={this.search} />
         <Events events={this.state.events} />
         <ReactPaginate
           pageCount={this.state.totalEvents}

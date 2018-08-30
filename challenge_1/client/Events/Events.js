@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 
 const headers = {
-  date: 'date',
-  category1: 'category1',
-  category2: 'category2',
-  description: 'description',
-  granularity: 'granularity',
-  lang: 'lang'
+  date: 'Date',
+  category1: 'Category1',
+  category2: 'Category2',
+  description: 'Description',
+  granularity: 'Granularity',
+  lang: 'Lang'
 };
 
 const Events = props => {
