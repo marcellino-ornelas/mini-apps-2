@@ -1,0 +1,30 @@
+.fa.fa-search {
+  line-height: 41px;
+}
+
+.pagination {
+  text-align: center;
+}
+
+@media only screen and (max-width: 992px) {
+  .pagination li.prev,
+  .pagination li.next {
+    width: auto !important;
+  }
+}
+
+.input-field label {
+  pointer-events: all;
+}
+
+#search + label {
+  cursor: pointer;
+}
+
+.bottom-nav {
+  position: sticky;
+  background-color: white;
+  bottom: 0;
+  padding: 5px;
+  border-top: 1px solid grey;
+}
