@@ -1,37 +1,50 @@
 import React, { Component } from 'react';
 
-const headers = {
-  date: 'Date',
-  category1: 'Category1',
-  category2: 'Category2',
-  description: 'Description',
-  granularity: 'Granularity',
-  lang: 'Lang'
-};
-
 const Events = props => {
+  if (props.events === null) {
+    return <div>Loading....</div>;
+  }
+
   if (!props.events.length) {
-    return <div>Loading.....</div>;
+    return (
+      <div>
+        <h1>No results! try again</h1>
+      </div>
+    );
   }
   return (
-    <div className="events">
-      <Event event={headers} />
-      {props.events.map((event, index) => <Event event={event} key={index} />)}
-    </div>
+    <table className="highlight centered responsive-table">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Category1</th>
+          <th>Category2</th>
+          <th>Description</th>
+          <th>Granularity</th>
+          <th>Lang</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        {props.events.map((event, index) => (
+          <Event event={event} key={index} />
+        ))}
+      </tbody>
+    </table>
   );
 };
 
 const Event = props => {
   const event = props.event;
   return (
-    <div className="event">
-      <div className="event-cell date">{event.date}</div>
-      <div className="event-cell category1">{event.category1}</div>
-      <div className="event-cell category2">{event.category2}</div>
-      <div className="event-cell description">{event.description}</div>
-      <div className="event-cell granularity">{event.granularity}</div>
-      <div className="event-cell lang">{event.lang}</div>
-    </div>
+    <tr className="event">
+      <td className="event-cell date">{event.date}</td>
+      <td className="event-cell category1">{event.category1}</td>
+      <td className="event-cell category2">{event.category2}</td>
+      <td className="event-cell description">{event.description}</td>
+      <td className="event-cell granularity">{event.granularity}</td>
+      <td className="event-cell lang">{event.lang}</td>
+    </tr>
   );
 };
 

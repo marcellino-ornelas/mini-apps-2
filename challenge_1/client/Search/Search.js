@@ -4,7 +4,8 @@ class Search extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      q: ''
+      q: '',
+      searchActive: false
     };
 
     this.handleSearchInput = this.handleSearchInput.bind(this);
@@ -14,45 +15,39 @@ class Search extends Component {
   componentDidMount() {}
 
   handleSearchInput(e) {
+    this.props.search(e.target.value);
     this.setState({
       q: e.target.value
     });
   }
 
-  handleSearch() {
+  handleSearch(e) {
+    e.preventDefault();
     this.props.search(this.state.q);
     this.setState({ q: '' });
   }
 
   render() {
     return (
-      <div>
-        {/*<input
-          type="text"
-          value={this.state.q}
-          onChange={this.handleSearchInput}
-        />
-        <button className="" onClick={this.handleSearch}>
-          search
-        </button>*/}
-        <div className="row">
-          <form className="col s12">
-            <div className="input-field col s6">
-              <i
-                className="material-icons prefix fa fa-search"
-                onClick={this.handleSearch}
-              />
+      <nav>
+        <div className="nav-wrapper">
+          <form onSubmit={this.handleSearch}>
+            <div className="input-field">
               <input
-                id="icon_prefix"
-                type="text"
+                id="search"
+                type="search"
+                required
                 value={this.state.q}
                 onChange={this.handleSearchInput}
               />
-              <label htmlFor="icon_prefix">Search</label>
+              <label className="label-icon" htmlFor="search">
+                <i className="material-icons fa fa-search" />
+              </label>
+              <i className="material-icons fa fa-close" />
             </div>
           </form>
         </div>
-      </div>
+      </nav>
     );
   }
 }

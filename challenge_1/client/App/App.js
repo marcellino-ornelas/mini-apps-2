@@ -11,7 +11,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      events: [],
+      events: null,
       totalEvents: 0,
       currentPage: 0,
       q: ''
@@ -21,17 +21,7 @@ class App extends Component {
     this.search = this.search.bind(this);
   }
 
-  // componentDidMount() {
-  //   this.getEventsByPage(this.state.currentPage, res => {
-  //     console.log();
-  //     this.setState({
-  //       totalEvents: +res.headers['x-total-count']
-  //     });
-  //   });
-  // }
-
   handlePageClick({ selected: currentPage }) {
-    console.log(currentPage);
     this.getEventsByPage(this.state.q, currentPage + 1, res => {
       this.setState({
         currentPage,
@@ -66,18 +56,23 @@ class App extends Component {
 
   render() {
     return (
-      <div>
+      <div className="">
         <Search search={this.search} />
         <Events events={this.state.events} />
-        <ReactPaginate
-          pageCount={this.state.totalEvents}
-          pageRangeDisplayed={TOTAL_PAGE_DISPLAY}
-          marginPagesDisplayed={10}
-          onPageChange={this.handlePageClick}
-          initialPage={this.state.currentPage}
-          containerClassName="pagination"
-          pageClassName="pagination-page"
-        />
+        <div className="bottom-nav">
+          <ReactPaginate
+            nextLabel={<i className="fa fa-chevron-right" />}
+            previousLabel={<i className="fa fa-chevron-left" />}
+            pageCount={this.state.totalEvents}
+            marginPagesDisplayed={2}
+            pageRangeDisplayed={TOTAL_PAGE_DISPLAY}
+            onPageChange={this.handlePageClick}
+            initialPage={this.state.currentPage}
+            containerClassName="pagination"
+            pageClassName="pagination-page waves-effect"
+            activeClassName="active"
+          />
+        </div>
       </div>
     );
   }
