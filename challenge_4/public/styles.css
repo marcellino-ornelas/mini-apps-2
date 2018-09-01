@@ -1,0 +1,40 @@
+.mine-sweeper-board,
+.mine-sweeper-row,
+.mine-sweeper-cell {
+  border-color: black;
+  border-style: solid;
+  border-width: 0px;
+}
+
+.mine-sweeper-board {
+  border-width: 1px;
+  background-color: lightgrey;
+  text-align: center;
+}
+
+.mine-sweeper-row {
+  display: flex;
+}
+
+.mine-sweeper-board .mine-sweeper-row:nth-last-child(1n + 2) {
+  border-bottom-width: 1px;
+}
+
+.mine-sweeper-row .mine-sweeper-cell {
+  padding: 1%;
+  flex: 1 0;
+  cursor: pointer;
+}
+
+.mine-sweeper-row .mine-sweeper-cell.is-empty span,
+.mine-sweeper-row .mine-sweeper-cell span {
+  visibility: hidden;
+}
+
+.mine-sweeper-row .mine-sweeper-cell.is-open span {
+  visibility: initial;
+}
+
+.mine-sweeper-row .mine-sweeper-cell:nth-last-child(1n + 2) {
+  border-right-width: 1px;
+}

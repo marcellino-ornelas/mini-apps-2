@@ -1,23 +1,20 @@
 import React, { Component } from 'react';
 
-class MineSweeperBoard extends Component {
-  // constructor(props){
-  // super(props);
-  // this.state = {};
-  // }
+import MineSweeperRow from './MineSweeperRow';
 
-  // componentWillMount(){}
-  // componentDidMount(){}
-  // componentWillUnmount(){}
-
-  // componentWillReceiveProps(){}
-  // shouldComponentUpdate(){}
-  // componentWillUpdate(){}
-  // componentDidUpdate(){}
-
-  render() {
-    return <div />;
-  }
-}
+const MineSweeperBoard = props => {
+  return (
+    <div className="mine-sweeper-board">
+      {props.board.map((row, rowId) => (
+        <MineSweeperRow
+          key={rowId}
+          rowId={rowId}
+          row={row}
+          openMineCell={props.openMineCell}
+        />
+      ))}
+    </div>
+  );
+};
 
 export default MineSweeperBoard;
